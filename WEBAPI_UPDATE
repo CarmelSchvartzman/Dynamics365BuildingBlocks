@@ -48,3 +48,29 @@ $.ajax({
         Xrm.Utility.alertDialog(textStatus + " " + errorThrown);
     }
 });
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+UPDATE RELATIONSHIP:
+
+var entity = {};
+entity["regardingobjectid_contact@odata.bind"] = "/contacts(98765432-1234-1234-2134-123456789012)";
+
+$.ajax({
+    type: "PATCH",
+    contentType: "application/json; charset=utf-8",
+    datatype: "json",
+    url: Xrm.Page.context.getClientUrl() + "/api/data/v8.2/tasks(12345678-1234-1234-1234-123456789012)",
+    data: JSON.stringify(entity),
+    beforeSend: function(XMLHttpRequest) {
+        XMLHttpRequest.setRequestHeader("OData-MaxVersion", "4.0");
+        XMLHttpRequest.setRequestHeader("OData-Version", "4.0");
+        XMLHttpRequest.setRequestHeader("Accept", "application/json");
+    },
+    async: true,
+    success: function(data, textStatus, xhr) {
+        //Success - No Return Data - Do Something
+    },
+    error: function(xhr, textStatus, errorThrown) {
+        Xrm.Utility.alertDialog(textStatus + " " + errorThrown);
+    }
+});
