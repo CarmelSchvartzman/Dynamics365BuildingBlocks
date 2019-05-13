@@ -1,0 +1,21 @@
+     PagingInfo pageInfo = new PagingInfo();
+                    pageInfo.Count = 5000;
+                    pageInfo.PageNumber = 1;
+
+                    QueryByAttribute query = new QueryByAttribute("listmember");
+                    query.AddAttributeValue("listid", marketingListGuid);
+                    query.ColumnSet = new ColumnSet(true);
+                    EntityCollection entityCollection = orgService.RetrieveMultiple(query);
+ while (entityCollection.MoreRecords)
+                    {
+
+                        query.PageInfo.PageNumber += 1;
+                        query.PageInfo.PagingCookie = entityCollection.PagingCookie;
+                        entityCollection = orgService.RetrieveMultiple(query);
+
+                        foreach (Entity mocher1 in entityCollection.Entities)
+                        {
+                            sbMochrim.AppendFormat(" MocherId : {0} - MocherName : {1}  " + Environment.NewLine, mocher1.Id, mocher1.LogicalName);
+                            memberGuids.Add(((EntityReference)mocher1.Attributes["entityid"]).Id);
+                        }
+                    }
