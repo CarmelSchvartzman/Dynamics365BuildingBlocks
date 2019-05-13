@@ -1,0 +1,60 @@
+      Entity workflowBen = null;
+
+            ColumnSet _columnsWorkflow = new ColumnSet(new string[] { "name", "workflowid" });
+
+
+            ConditionExpression conditionAssociationName = new ConditionExpression();
+            conditionAssociationName.AttributeName = "name";
+            conditionAssociationName.Operator = ConditionOperator.Equal;
+            conditionAssociationName.Values.Add(sWorkflowName);
+
+            ConditionExpression type = new ConditionExpression();
+            type.AttributeName = "type";
+            type.Operator = ConditionOperator.Equal;
+            type.Values.Add("1");
+
+
+            FilterExpression filterRetrieveWorkflow = new FilterExpression();
+            filterRetrieveWorkflow.FilterOperator = LogicalOperator.And;
+            filterRetrieveWorkflow.AddCondition(conditionAssociationName);
+            filterRetrieveWorkflow.AddCondition(type);
+
+
+            QueryExpression _queryRetrieveWorkflow = new QueryExpression();           
+            _queryRetrieveWorkflow.EntityName = "workflow";
+            _queryRetrieveWorkflow.ColumnSet = _columnsWorkflow;
+            _queryRetrieveWorkflow.Criteria = filterRetrieveWorkflow;
+
+
+
+
+            try
+            {
+                EntityCollection workflows = service.RetrieveMultiple(_queryRetrieveWorkflow);
+
+
+                Guid workflowBen_Id = new Guid();
+                if (workflows.Entities.Count > 0)
+                {
+
+                    foreach (Entity taalich in workflows.Entities)
+                    {
+
+                        workflowBen = taalich;
+
+                        ExecuteWorkflowRequest requestExecuteWorkflow = new ExecuteWorkflowRequest();
+                        ExecuteWorkflowResponse responseExecuteWorkflow = new ExecuteWorkflowResponse();
+                        workflowBen_Id = requestExecuteWorkflow.WorkflowId = workflowBen.Id;
+                        
+                        requestExecuteWorkflow.EntityId = gMoher;
+                        responseExecuteWorkflow = (ExecuteWorkflowResponse)service.Execute(requestExecuteWorkflow);
+                      
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                string exception = ex.Message;
+                string stack = ex.StackTrace;
+                
