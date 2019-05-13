@@ -1,0 +1,18 @@
+QUERYBYATTRIBUTE: 
+select ..... from .... where .....
+ doesn’t support “OR”  -  No "JOIN" - No condition operators - supports only “Equal” condition operator
+
+QueryByAttribute myQuery=new QueryByAttribute();
+myQuery.ColumnSet=new AllColumns();
+myQuery.EntityName=EntityName.opportunity.ToString();
+myQuery.Attributes=new string[]{”name”,”address1_city”};
+myQuery.Values=new string[]{”Test1″,”Redmond”};
+BusinessEntityCollection retrieved=service.RetrieveMultiple(myQuery); 
+--------------------------------------------------------------------------------------------------
+
+QueryByAttribute querybyexpression = new QueryByAttribute(“account”);
+querybyexpression.ColumnSet = new ColumnSet(“name”, “address1_city”, “emailaddress1”);
+querybyexpression.Attributes.AddRange(“name”);
+querybyexpression.Values.AddRange(“Peter”);
+--------------------------------------------------------------------------------------------------
+
