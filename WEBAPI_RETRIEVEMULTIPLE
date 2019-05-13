@@ -1,0 +1,65 @@
+$.ajax({
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    datatype: "json",
+    url: Xrm.Page.context.getClientUrl() 
+    + "/api/data/v8.2/phonecalls?$select=description,modifiedon,phonenumber"
+    +  "&$expand=regardingobjectid_contact_phonecall($select=firstname,followemail,lastname)&$orderby=createdon desc",
+    beforeSend: function(XMLHttpRequest) {
+        XMLHttpRequest.setRequestHeader("OData-MaxVersion", "4.0");
+        XMLHttpRequest.setRequestHeader("OData-Version", "4.0");
+        XMLHttpRequest.setRequestHeader("Accept", "application/json");
+    },
+    async: true,
+    success: function(data, textStatus, xhr) {
+        var results = data;
+        for (var i = 0; i < results.value.length; i++) {
+            var description = results.value[i]["description"];
+            var modifiedon = results.value[i]["modifiedon"];
+            var phonenumber = results.value[i]["phonenumber"];
+            //Use @odata.nextLink to query resulting related records
+            var regardingobjectid_contact_phonecall_NextLink 
+            = results.value[i]["regardingobjectid_contact_phonecall@odata.nextLink"];
+        }
+    },
+    error: function(xhr, textStatus, errorThrown) {
+        Xrm.Utility.alertDialog(textStatus + " " + errorThrown);
+    }
+});
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IMPERSONATE:
+
+$.ajax({
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    datatype: "json",
+    url: Xrm.Page.context.getClientUrl() + "/api/data/v8.2/"
+    +"phonecalls?$select=description,modifiedon,phonenumber&$expand=regardingobjectid_contact_phonecall"
+    +"($select=firstname,followemail,lastname)&$orderby=createdon desc",
+    beforeSend: function(XMLHttpRequest) {
+        XMLHttpRequest.setRequestHeader("OData-MaxVersion", "4.0");
+        XMLHttpRequest.setRequestHeader("OData-Version", "4.0");
+        XMLHttpRequest.setRequestHeader("Accept", "application/json");
+        XMLHttpRequest.setRequestHeader("Prefer", "odata.maxpagesize=100");
+        XMLHttpRequest.setRequestHeader("MSCRMCallerID", "88888888-1234-1234-1234-123456789012");
+    },
+    async: true,
+    success: function(data, textStatus, xhr) {
+        var results = data;
+        for (var i = 0; i < results.value.length; i++) {
+            var description = results.value[i]["description"];
+            var modifiedon = results.value[i]["modifiedon"];
+            var phonenumber = results.value[i]["phonenumber"];
+            //Use @odata.nextLink to query resulting related records
+            var regardingobjectid_contact_phonecall_NextLink 
+                        = results.value[i]["regardingobjectid_contact_phonecall@odata.nextLink"];
+        }
+    },
+    error: function(xhr, textStatus, errorThrown) {
+        Xrm.Utility.alertDialog(textStatus + " " + errorThrown);
+    }
+});
+
+
