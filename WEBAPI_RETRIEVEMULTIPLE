@@ -62,4 +62,31 @@ $.ajax({
     }
 });
 
+http://........../api/data/v8.2/contacts?$select=contactid,firstname,lastname&$expand=Contact_Phonecalls
+            ($select=phonenumber,subject)&$filter=createdon%20gt%202019-05-09T02:00:00.000Z&$orderby=createdon%20desc
+{
+  "@odata.context":"http://........./api/data/v8.2/$metadata#contacts(contactid,firstname,lastname,Contact_Phonecalls,Contact_Phonecalls(phonenumber,subject))","value":[
+    {
+      "@odata.etag":"W/\"24058138\"","contactid":"f44b4954-5675-e911-8105-00155d82a6b6","firstname":"F","lastname":"F","createdon":"2019-05-13T08:08:46Z","Contact_Phonecalls":[
+        
+      ],"Contact_Phonecalls@odata.nextLink":"http://svdcrm16/PNIYOT/api/data/v8.2/contacts(f44b4954-5675-e911-8105-00155d82a6b6)/Contact_Phonecalls?$select=phonenumber,subject"
+    },{
+      "@odata.etag":"W/\"24057657\"","contactid":"0962b632-5375-e911-8105-00155d82a6b6","firstname":"D","lastname":"D","createdon":"2019-05-13T07:46:21Z","Contact_Phonecalls":[
+        
+      ],"Contact_Phonecalls@odata.nextLink":"http://svdcrm16/PNIYOT/api/data/v8.2/contacts(0962b632-5375-e911-8105-00155d82a6b6)/Contact_Phonecalls?$select=phonenumber,subject"
+    },{
+      "@odata.etag":"W/\"24057456\"","contactid":"3337fbfa-5175-e911-8105-00155d82a6b6","firstname":"C","lastname":"C","createdon":"2019-05-13T07:37:38Z","Contact_Phonecalls":[
+        
+      ],"Contact_Phonecalls@odata.nextLink":"http://svdcrm16/PNIYOT/api/data/v8.2/contacts(3337fbfa-5175-e911-8105-00155d82a6b6)/Contact_Phonecalls?$select=phonenumber,subject"
+    },{
+      "@odata.etag":"W/\"24057273\"","contactid":"84c2b081-5075-e911-8105-00155d82a6b6","firstname":"B","lastname":"B","createdon":"2019-05-13T07:27:05Z","Contact_Phonecalls":[
+        
+      ],"Contact_Phonecalls@odata.nextLink":"http://svdcrm16/PNIYOT/api/data/v8.2/contacts(84c2b081-5075-e911-8105-00155d82a6b6)/Contact_Phonecalls?$select=phonenumber,subject"
+    },{
+      "@odata.etag":"W/\"24057152\"","contactid":"2d9bab72-4f75-e911-8105-00155d82a6b6","firstname":"A","lastname":"A","createdon":"2019-05-13T07:19:30Z","Contact_Phonecalls":[
+        
+      ],"Contact_Phonecalls@odata.nextLink":"http://svdcrm16/PNIYOT/api/data/v8.2/contacts(2d9bab72-4f75-e911-8105-00155d82a6b6)/Contact_Phonecalls?$select=phonenumber,subject"
+    }
+  ]
+}
 
