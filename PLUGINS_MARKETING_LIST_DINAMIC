@@ -1,0 +1,23 @@
+     var dynamicQuery = entity.Attributes["query"].ToString();
+
+                    FetchExpression fe = null;
+
+                    if (dynamicQuery != null)
+                    {
+                        fe = new FetchExpression(dynamicQuery);
+
+                    }
+
+                    var memberResult = orgService.RetrieveMultiple(fe);  
+                    
+      StringBuilder sbMochrim = new StringBuilder(" Mochrim List = ", memberGuids.Count + 1);
+                    foreach (Entity member in memberResult.Entities)
+                    {
+
+                        sbMochrim.AppendFormat(" MocherId : {0} - MocherName : {1} " + Environment.NewLine, member.Id, member.LogicalName);
+                        memberGuids.Add(member.Id);
+                    }
+                    #endregion
+                }
+              
+      HashSet<string> oCWFList = new HashSet<string>();
