@@ -1,0 +1,40 @@
+;with cte as
+(
+    select *
+    , row_number() over (
+        partition by [columns], [which], [should], [be], [unique]
+        order by [columns], [to], [select], [what's], [kept]
+    ) NoOfThisDuplicate
+)
+delete 
+from cte
+where NoOfThisDuplicate > 1
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+DELETE FROM test_data
+WHERE  ROWID IN (
+  WITH row_numbers ( rid, rn ) AS (
+    SELECT ROWID, ROW_NUMBER() OVER ( PARTITION BY value ORDER BY ROWNUM ) AS rn
+    FROM   test_data
+  )
+  SELECT rid
+  FROM   row_numbers
+  WHERE  rn > 1
+);
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+
