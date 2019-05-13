@@ -1,0 +1,50 @@
+UPDATE (PATCH) A TASK:
+
+XMLHTTPREQUEST:
+var entity = {};
+entity.subject = "New Subject Text";
+
+var req = new XMLHttpRequest();
+req.open("PATCH", Xrm.Page.context.getClientUrl() + "/api/data/v8.2/tasks(12345678-1234-1234-1234-123456789012)", true);
+req.setRequestHeader("OData-MaxVersion", "4.0");
+req.setRequestHeader("OData-Version", "4.0");
+req.setRequestHeader("Accept", "application/json");
+req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+req.onreadystatechange = function() {
+    if (this.readyState === 4) {
+        req.onreadystatechange = null;
+        if (this.status === 204) {
+            //Success - No Return Data - Do Something
+        } else {
+            Xrm.Utility.alertDialog(this.statusText);
+        }
+    }
+};
+req.send(JSON.stringify(entity));
+
+
+
+
+JQUERY:
+var entity = {};
+entity.subject = "New Subject Text";
+
+$.ajax({
+    type: "PATCH",
+    contentType: "application/json; charset=utf-8",
+    datatype: "json",
+    url: Xrm.Page.context.getClientUrl() + "/api/data/v8.2/tasks(12345678-1234-1234-1234-123456789012)",
+    data: JSON.stringify(entity),
+    beforeSend: function(XMLHttpRequest) {
+        XMLHttpRequest.setRequestHeader("OData-MaxVersion", "4.0");
+        XMLHttpRequest.setRequestHeader("OData-Version", "4.0");
+        XMLHttpRequest.setRequestHeader("Accept", "application/json");
+    },
+    async: true,
+    success: function(data, textStatus, xhr) {
+        //Success - No Return Data - Do Something
+    },
+    error: function(xhr, textStatus, errorThrown) {
+        Xrm.Utility.alertDialog(textStatus + " " + errorThrown);
+    }
+});
