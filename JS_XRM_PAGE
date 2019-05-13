@@ -1,0 +1,88 @@
+(Xrm.Page.data.entity.getId()).replace("{","").replace("}","");
+Xrm.Page.data.entity.getEntityName()
+Xrm.Page.getAttribute("statuscode").setValue("");  //    .setRequiredLevel("required");  //  .setRequiredLevel("none");
+Xrm.Page.getControl("").setVisible(true);
+Xrm.Page.data.entity.save();
+Xrm.Utility.alertDialog("");
+
+
+
+document.getElementById("crmGrid").control.refresh(); //  REFRESH GRID
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+SET VALUE:
+
+debugger;
+	try
+	{
+		if(Xrm.Page.data.entity.getId() != null && Xrm.Page.data.entity.getId() != "") 
+		{
+			Xrm.Page.getAttribute("statuscode").setValue("100000024");
+			Xrm.Page.data.entity.save();
+		}
+		else
+		{
+		    Xrm.Utility.alertDialog(" נא לשמור את ההפניה לפני שלוחצים על כפתור עדכן לממתין לתשובה ");
+		}	
+	}
+	catch(e)
+	{
+		//DEBUG
+		Xrm.Utility.alertDialog(e.message);
+	}
+  
+  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  
+  
+  var options = { openInNewWindow: true };
+	
+		var parameters = {};
+		parameters["new_RegardingIdType"] = Xrm.Page.data.entity.getEntityName();
+        parameters["new_RegardingIdName"] = "";//Xrm.Page.getAttribute("fullname").getValue();
+        parameters["new_RegardingId"] = Xrm.Page.data.entity.getId();
+
+		Xrm.Utility.openEntityForm("lead",null,parameters,options);
+  
+  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  OPEN QUICK FORM:
+  var parameters = {};
+		parameters["new_RegardingIdType"] = Xrm.Page.data.entity.getEntityName();
+        parameters["new_RegardingIdName"] = Xrm.Page.getAttribute("fullname").getValue();
+        parameters["new_RegardingId"] = Xrm.Page.data.entity.getId();
+
+		Xrm.Utility.openQuickCreate("phonecall",null,parameters);
+  
+  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  EXECUTE WORKFLOW:
+  
+  var workflowId = "633457CF-28D5-E811-80F6-00155D6786A3";
+  Xrm.Page.context.getClientUrl() + "/api/data/v8.2/workflows(" + workflowId + ")/Microsoft.Dynamics.CRM.ExecuteWorkflow
+  
+  
+  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  REFRESH SUBGRID:
+      
+      var subgrid = Xrm.Page.ui.controls.get("kead_mails_grid");
+    
+  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+      
+      
+      
+      
+      
+      
+      
+      
+  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        
+        
+        
+        
+        
+        
+        
+        
+  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  
+  
