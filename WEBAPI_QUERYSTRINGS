@@ -19,3 +19,23 @@ ONE-TO-MANY:
 
 ....../api/data/v8.2/phonecalls?$filter=modifiedon ge 2017-01-01 and modifiedon le 2019-03-01&$select=activityid,phonenumber&$top=100
 
+FETCH XML:
+
+
+....../api/data/v8.2/phonecalls?fetchXml=
+<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+  <entity name="phonecall">
+    <attribute name="subject" />
+    <attribute name="statecode" />
+    <attribute name="prioritycode" />
+    <attribute name="scheduledend" />
+    <attribute name="createdby" />
+    <attribute name="regardingobjectid" />
+    <attribute name="activityid" />
+    <order attribute="subject" descending="false" />
+  </entity>
+</fetch>
+
+
+
+
