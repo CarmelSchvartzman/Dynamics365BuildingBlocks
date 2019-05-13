@@ -1,0 +1,58 @@
+Create new TASK :
+XMLHTTPREQUEST:
+
+var entity = {};
+entity.subject = "from webapi";
+entity.description = "created with IServiceProvider";
+entity.scheduledstart = new Date("05/09/2019 00:00:00").toISOString();
+
+var req = new XMLHttpRequest();
+req.open("POST", Xrm.Page.context.getClientUrl() + "/api/data/v8.2/tasks", true);
+req.setRequestHeader("OData-MaxVersion", "4.0");
+req.setRequestHeader("OData-Version", "4.0");
+req.setRequestHeader("Accept", "application/json");
+req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+req.onreadystatechange = function() {
+    if (this.readyState === 4) {
+        req.onreadystatechange = null;
+        if (this.status === 204) {
+            var uri = this.getResponseHeader("OData-EntityId");
+            var regExp = /\(([^)]+)\)/;
+            var matches = regExp.exec(uri);
+            var newEntityId = matches[1];
+        } else {
+            Xrm.Utility.alertDialog(this.statusText);
+        }
+    }
+};
+req.send(JSON.stringify(entity));
+
+
+JQUERY:
+var entity = {};
+entity.subject = "from webapi";
+entity.description = "created with IServiceProvider";
+entity.scheduledstart = new Date("05/09/2019 00:00:00").toISOString();
+
+$.ajax({
+    type: "POST",
+    contentType: "application/json; charset=utf-8",
+    datatype: "json",
+    url: Xrm.Page.context.getClientUrl() + "/api/data/v8.2/tasks",
+    data: JSON.stringify(entity),
+    beforeSend: function(XMLHttpRequest) {
+        XMLHttpRequest.setRequestHeader("OData-MaxVersion", "4.0");
+        XMLHttpRequest.setRequestHeader("OData-Version", "4.0");
+        XMLHttpRequest.setRequestHeader("Accept", "application/json");
+    },
+    async: true,
+    success: function(data, textStatus, xhr) {
+        var uri = xhr.getResponseHeader("OData-EntityId");
+        var regExp = /\(([^)]+)\)/;
+        var matches = regExp.exec(uri);
+        var newEntityId = matches[1];
+    },
+    error: function(xhr, textStatus, errorThrown) {
+        Xrm.Utility.alertDialog(textStatus + " " + errorThrown);
+    }
+});
