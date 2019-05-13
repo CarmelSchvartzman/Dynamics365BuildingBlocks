@@ -1,0 +1,28 @@
+  Entity fromActivityParty = new Entity("activityparty");
+    Entity toActivityParty = new Entity("activityparty");
+ 
+    Guid contactId = (Guid)a.Attributes["contactid"];
+ 
+    fromActivityParty["partyid"] = new EntityReference("systemuser", userId);
+    toActivityParty["partyid"] = new EntityReference("contact", contactId);
+ 
+    Entity email = new Entity("email");
+    email["from"] = new Entity[] { fromActivityParty };
+    email["to"] = new Entity[] { toActivityParty };
+    email["regardingobjectid"] = new EntityReference("contact", contactId);
+    email["subject"] = "This is the subject";
+    email["description"] = "This is the description.";
+    email["directioncode"] = true;
+    Guid emailId = service.Create(email);
+ 
+    // Use the SendEmail message to send an e-mail message.
+    SendEmailRequest sendEmailRequest = new SendEmailRequest
+    {
+        EmailId = emailId,
+        TrackingToken = "",
+        IssueSend = true
+    };
+ 
+    SendEmailResponse sendEmailresp = (SendEmailResponse)service.Execute(sendEmailRequest);
+
+
