@@ -6,10 +6,15 @@ Xrm.Page.data.entity.save();
 Xrm.Utility.alertDialog("");
 
 
-
+ Xrm.Page.getControl("subjects_of_lead_grid").getGrid();
 document.getElementById("crmGrid").control.refresh(); //  REFRESH GRID
 
 
+ arguments[0].getEventArgs().preventDefault();
+Xrm.Page.context.getQueryStringParameters().new_RegardingId;
+
+
+setTimeout("RunWorkflowxxxxx()",500);
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 SET VALUE:
 
@@ -75,7 +80,14 @@ debugger;
       
       
   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        
+  REGARDINGID:
+  
+  if(Xrm.Page.getAttribute("regardingobjectid").getValue() != null)
+		{
+			var regarding = Xrm.Page.getAttribute("regardingobjectid").getValue();
+			var leadId = regarding[0].id;
+			var odataSelect = Xrm.Page.context.getClientUrl() 
+			+ "/XRMServices/2011/OrganizationData.svc/LeadSet(guid'" + leadId + "')?$select=ParentContactId";
         
         
         
