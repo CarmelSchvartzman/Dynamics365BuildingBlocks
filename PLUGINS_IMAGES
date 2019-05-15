@@ -1,0 +1,60 @@
+ITracingService tracingService = (ITracingService)serviceProvider.GetService(typeof(ITracingService));
+IPluginExecutionContext context = (IPluginExecutionContext)serviceProvider.GetService(typeof(IPluginExecutionContext)); 
+IOrganizationServiceFactory serviceFactory = (IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory));
+IOrganizationService service = serviceFactory.CreateOrganizationService(context.UserId);
+
+////// FROM CONTEXT (only updated attr)
+    if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is Entity)
+     {    
+         Entity entity = (Entity)context.InputParameters["Target"];    
+         string email = entity["emailaddress1"].ToString();
+        // get the current record guid from context
+         Guid leadRecordGuid = entity.Id;
+         
+   
+ ///////  FROM PRE-IMAGE:
+  if (context.PreEntityImages.Contains("image_name") && context.PreEntityImages["image_name"] is Entity)
+          {
+
+                Entity preMessageImage = (Entity)context.PreEntityImages["image_name"];
+               // get value before database update perform:
+                var pretopic = (String)preMessageImage.Attributes["subject"]; 
+
+          }  
+
+                     
+ 
+ ///////  FROM POST-IMAGE :
+ 
+            if (context.PostEntityImages.Contains("image_name") && context.PostEntityImages["image_name"] is Entity)
+            {
+              Entity postMessageImage = (Entity)context.PostEntityImages["image_name"];
+              // get value after database update performed:
+              posttopic = (String)postMessageImage.Attributes["subject"]; 
+
+            } 
+            
+       
+ 
+ /////// RETRIEVE + UPDATE : 
+            
+           // update the old and new values of topic field in description field
+
+          Entity leadObj = 
+          service.Retrieve(context.PrimaryEntityName,leadRecordGuid, new ColumnSet("description"));
+
+          leadObj["description"] = 
+          "Pre-Image of description- "+pretopic+"   "+"Post-Image of description-- "+posttopic;
+
+          service.Update(leadObj);
+   
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
