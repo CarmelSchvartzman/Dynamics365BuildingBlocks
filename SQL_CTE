@@ -24,9 +24,55 @@ WHERE  ROWID IN (
 );
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+https://www.red-gate.com/simple-talk/sql/t-sql-programming/sql-server-cte-basics/
 
+DROP TABLE #EMPLOYEES
+CREATE TABLE #EMPLOYEES
+(
+ EmployeeID int NOT NULL PRIMARY KEY,
+ FirstName varchar(50) NOT NULL,
+ LastName varchar(50) NOT NULL,
+ ManagerID int NULL
+)
 
+INSERT INTO #EMPLOYEES VALUES (101, 'Ken', 'SÃ¡nchez', NULL)
+INSERT INTO #EMPLOYEES VALUES (102, 'Terri', 'Duffy', 101)
+INSERT INTO #EMPLOYEES VALUES (103, 'Roberto', 'Tamburello', 101)
+INSERT INTO #EMPLOYEES VALUES (104, 'Rob', 'Walters', 102)
+INSERT INTO #EMPLOYEES VALUES (105, 'Gail', 'Erickson', 102)
+INSERT INTO #EMPLOYEES VALUES (106, 'Jossef', 'Goldberg', 103)
+INSERT INTO #EMPLOYEES VALUES (107, 'Dylan', 'Miller', 103)
+INSERT INTO #EMPLOYEES VALUES (108, 'Diane', 'Margheim', 105)
+INSERT INTO #EMPLOYEES VALUES (109, 'Gigi', 'Matthew', 105)
+INSERT INTO #EMPLOYEES VALUES (110, 'Michael', 'Raheem', 106)
 
+--------
+WITH CTE (EmployeeID , FirstName , LastName , ManagerID , HIERARCHY )
+AS
+(
+SELECT EmployeeID , FirstName , LastName , ManagerID , 0 FROM #EMPLOYEES  WHERE  MANAGERID IS NULL
+
+UNION ALL 
+
+SELECT  E.EmployeeID , E.FirstName , E.LastName , E.ManagerID , CTE.HIERARCHY + 1 FROM   #EMPLOYEES E
+INNER JOIN
+ CTE  ON  E.MANAGERID = CTE.EmployeeID 
+
+)
+SELECT * FROM CTE
+ORDER BY  EmployeeID ASC
+------
+EmployeeID	FirstName	LastName	ManagerID	HIERARCHY
+101	Ken	S?¡nchez	NULL	                    0
+102	Terri	Duffy	101                        	1
+103	Roberto	Tamburello	101	                    1
+104	Rob	Walters	102                         	2
+105	Gail	Erickson	102	                    2
+106	Jossef	Goldberg	103	                    2
+107	Dylan	Miller	103	                        2
+108	Diane	Margheim	105                 	3
+109	Gigi	Matthew	105                     	3
+110	Michael	Raheem	106                     	3
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
