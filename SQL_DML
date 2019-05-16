@@ -1,0 +1,25 @@
+@@@@@@@@@@@@@@@@@ TRANSACTIONS @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+--PRINT @@TRANCOUNT
+BEGIN TRAN T1 BEGIN TRY
+
+
+ 
+
+
+
+		--PRINT @@TRANCOUNT
+		COMMIT TRAN T1
+END TRY BEGIN CATCH
+		ROLLBACK TRAN T1
+END CATCH
+
+		--PRINT 'AFTER TRY'
+		--PRINT @@TRANCOUNT
+
+
+@@@@@@@@@@@@@@@@@ CTE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+
+@@@@@@@@@@@@@@@@@       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
