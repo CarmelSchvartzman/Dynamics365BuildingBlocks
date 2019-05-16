@@ -18,7 +18,19 @@ END CATCH
 
 
 @@@@@@@@@@@@@@@@@ CTE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+WITH CTE (EmployeeID , FirstName , LastName , ManagerID , HIERARCHY )
+AS
+(  --  ANCHOR MEMBER:
+SELECT EmployeeID , FirstName , LastName , ManagerID , 0 FROM #EMPLOYEES  WHERE  MANAGERID IS NULL
 
+UNION ALL 
+   --  RECURSIVE MEMBER:
+SELECT  E.EmployeeID , E.FirstName , E.LastName , E.ManagerID , CTE.HIERARCHY + 1 FROM   #EMPLOYEES E
+INNER JOIN
+ CTE  ON  E.MANAGERID = CTE.EmployeeID 
+
+)
+SELECT * FROM CTE
 
 
 
