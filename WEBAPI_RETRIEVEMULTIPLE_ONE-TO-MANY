@@ -1,0 +1,35 @@
+//////////  RETRIEVE MULTIPLE ONE-TO-MANY children phonecalls from given Contact - IMPERSONATION - PAGING
+
+$.ajax({
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    datatype: "json",
+    url: Xrm.Page.context.getClientUrl() + 
+         "/api/data/v8.2/contacts?$select=contactid,firstname,lastname&$expand=Contact_Phonecalls" +
+         "($select=phonenumber,subject)&$filter=createdon gt 2019-05-09T02:00:00.000Z&$orderby=createdon desc",
+    beforeSend: function(XMLHttpRequest) {
+        XMLHttpRequest.setRequestHeader("OData-MaxVersion", "4.0");
+        XMLHttpRequest.setRequestHeader("OData-Version", "4.0");
+        XMLHttpRequest.setRequestHeader("Accept", "application/json");
+        XMLHttpRequest.setRequestHeader("Prefer", "odata.maxpagesize=100");
+        XMLHttpRequest.setRequestHeader("MSCRMCallerID", "88888888-1234-1234-1234-123456789012");
+    },
+    async: true,
+    success: function(data, textStatus, xhr) {
+        var results = data;
+        for (var i = 0; i < results.value.length; i++) {
+            var contactid = results.value[i]["contactid"];
+            var firstname = results.value[i]["firstname"];
+            var lastname = results.value[i]["lastname"];
+            //Use @odata.nextLink to query resulting related records
+            var contact_Phonecalls_NextLink = results.value[i]["Contact_Phonecalls@odata.nextLink"];
+        }
+    },
+    error: function(xhr, textStatus, errorThrown) {
+        Xrm.Utility.alertDialog(textStatus + " " + errorThrown);
+    }
+});
+
+
+
+
