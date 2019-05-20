@@ -1,0 +1,34 @@
+////////////////  PRE-OPERATION PLUGIN :
+public class PreOperation : IPlugin
+{
+    public void Execute(IServiceProvider serviceProvider)
+    {
+       
+        IPluginExecutionContext context = (IPluginExecutionContext)serviceProvider.GetService(typeof(IPluginExecutionContext));
+        
+        Guid contact = new Guid("{74882D5C-381A-4863-A5B9-B8604615C2D0}");
+
+        // Pass the data to the post event plug-in in an execution context shared variable named PrimaryContact:
+        context.SharedVariables.Add("PrimaryContact", (Object)contact.ToString());
+    }
+}
+
+/////////////////  POST-OPERATION PLUGIN :
+public class PostOperation : IPlugin
+{
+    public void Execute(IServiceProvider serviceProvider)
+    {
+        IPluginExecutionContext context = (IPluginExecutionContext)serviceProvider.GetService(typeof(IPluginExecutionContext));
+        
+
+        // Obtain the contact from the execution context shared variables:
+        if (context.SharedVariables.Contains("PrimaryContact"))
+        {
+            Guid contact =
+                new Guid((string)context.SharedVariables["PrimaryContact"]);
+
+            // Do something with the contact.
+        }
+    }
+}
+ 
