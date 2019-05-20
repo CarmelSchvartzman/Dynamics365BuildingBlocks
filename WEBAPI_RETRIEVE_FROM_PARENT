@@ -1,0 +1,33 @@
+////////  MANY-TO-ONE : HTTP GET data from PARENT record : CONTACT <- PHONECALL : regardingobjectid_contact_phonecall
+
+
+$.ajax({
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    datatype: "json",
+    url: Xrm.Page.context.getClientUrl() + "/api/data/v8.2/phonecalls(12345678-1234-2314-234-12345789012)" + 
+    "?$select=activityid,description,phonenumber,_regardingobjectid_value,subject" +
+    "&$expand=regardingobjectid_contact_phonecall($select=contactid,fullname)",
+    beforeSend: function(XMLHttpRequest) {
+        XMLHttpRequest.setRequestHeader("OData-MaxVersion", "4.0");
+        XMLHttpRequest.setRequestHeader("OData-Version", "4.0");
+        XMLHttpRequest.setRequestHeader("Accept", "application/json");
+        XMLHttpRequest.setRequestHeader("MSCRMCallerID", "88888888-1234-1234-1234-123456789012");
+    },
+    async: true,
+    success: function(data, textStatus, xhr) {
+        var result = data;
+        var activityid = result["activityid"];
+        var description = result["description"];
+        var phonenumber = result["phonenumber"];
+        var _regardingobjectid_value = result["_regardingobjectid_value"];
+        var subject = result["subject"];
+        if (result.hasOwnProperty("regardingobjectid_contact_phonecall")) {
+            var regardingobjectid_contact_phonecall_contactid = result["regardingobjectid_contact_phonecall"]["contactid"];
+            var regardingobjectid_contact_phonecall_fullname = result["regardingobjectid_contact_phonecall"]["fullname"];
+        }
+    },
+    error: function(xhr, textStatus, errorThrown) {
+        Xrm.Utility.alertDialog(textStatus + " " + errorThrown);
+    }
+});
