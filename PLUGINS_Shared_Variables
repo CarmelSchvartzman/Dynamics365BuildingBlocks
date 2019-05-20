@@ -9,7 +9,7 @@ public class PreOperation : IPlugin
         Guid contact = new Guid("{74882D5C-381A-4863-A5B9-B8604615C2D0}");
 
         // Pass the data to the post event plug-in in an execution context shared variable named PrimaryContact:
-        context.SharedVariables.Add("PrimaryContact", (Object)contact.ToString());
+        context.SharedVariables.Add("PrimaryContact", (Object)contact.ToString());   ///  SERIALIZABLE !!!!!!
     }
 }
 
@@ -31,4 +31,13 @@ public class PostOperation : IPlugin
         }
     }
 }
- 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Important:
+
+Any type of data added to the shared variables collection must be serializable 
+otherwise the server will not know how to serialize the data and plug-in execution will fail.
+
+For a plug-in registered in stage 20 or 40, to access the shared variables 
+from a stage 10 registered plug-in that executes on create, update, delete, or by a RetrieveExchangeRateRequest, 
+you must access the ParentContext.SharedVariables collection. 
+For all other cases, IPluginExecutionContext.SharedVariables contains the collection.
