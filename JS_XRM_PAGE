@@ -123,4 +123,694 @@ debugger;
         
   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   
+  3) UI:
+Xrm.Page.ui.controls.get("emailaddress1").getLabel();
+
+
+METADATA:  
+GET all attributes names:
+http://........./api/data/v8.2/EntityDefinitions(LogicalName='phonecall')?$select=LogicalName&$expand=Attributes($select=LogicalName)  
+
+
+
+
+
+function fnHTTPGET(){
+
+var fetchXmlQuery = `  
+<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+  <entity name="phonecall">
+    <attribute name="subject" />
+    <attribute name="statecode" />
+    <attribute name="prioritycode" />
+    <attribute name="scheduledend" />
+    <attribute name="createdby" />
+    <attribute name="regardingobjectid" />
+    <attribute name="activityid" />
+    <order attribute="subject" descending="false" />
+  </entity>
+</fetch>`;  
   
+var req = new XMLHttpRequest();  
+req.open(  
+  "GET",  
+  Xrm.Page.context.getClientUrl() +  
+    "/api/data/v9.0/phonecall?fetchXml=" +  
+    encodeURIComponent(fetchXmlQuery),  
+  true  
+);  
+req.setRequestHeader("Prefer", 'odata.include-annotations="*"');  
+req.onreadystatechange = function() {  
+  if (this.readyState === 4) {  
+    req.onreadystatechange = null;  
+    if (this.status === 200) {  
+      var results = JSON.parse(this.response);  
+      console.dir(results);  
+    } else {  
+      alert(this.statusText);  
+    }  
+  }  
+};  
+req.send();   
+
+
+
+
+ 
+
+}
+
+
+function alertURL() {  
+ var url= "{0}/main.aspx?etn={1}&id={2}&pagetype=entityrecord"  
+  Xrm.Utility.alertDialog( url.replace("{0}",Xrm.Page.context.getClientUrl()).replace("{1}", Xrm.Page.data.entity.getEntityName()).replace("{2}", encodeURIComponent(Xrm.Page.data.entity.getId())));  
+ }
+
+
+NOTIFICATION:
+ function cloneGlobalSetting()
+{
+   Xrm.Page.ui.setFormNotification("I clicked on a new button!!!", "INFO", "GEN")
+}
+
+var fnConfirm = (ctx) = > {
+if (!confirm("אישור זה יצור " + Xrm.Page.getAttribute("new_mispar_tlunot_bahaglata").getValue() + " החלטות, מתוכן " + approveDiscounts + " הנחות מאושרות לתלונה. האם להמשיך? ")) {
+		ctx.getEventArgs().preventDefault();     //   Cancels the save operation
+}
+function fnNotificate()
+{
+   if(Xrm.Page.getAttribute("subject") != null)
+    var val = Xrm.Page.getAttribute("subject").getValue();
+   Xrm.Page.ui.setFormNotification("The value is : " + val, "INFO", "GEN")
+}
+
+
+REFRESH:
+
+Xrm.Page.data.refresh();  
+
+function refreshFormAfterInitialSave() {  
+     if (Xrm.Page.ui.getFormType() == 1) {  
+       top.callN = 1;  
+     }  
+     if (Xrm.Page.ui.getFormType() == 2 && top.callN == 1) {  
+        setTimeout(function () {          
+         top.callN = null;
+         Xrm.Utility.openEntityForm(Xrm.Page.data.entity.getEntityName(), Xrm.Page.data.entity.getId());
+       }, 2000);
+     }  
+ //////////////////////////////////////////    //////////////////////////////////////////     //////////////////////////////////////////     
+ OnLoad: function (context) {  
+       //set id for first call after save  
+       refreshFormAfterInitialSave();  
+     },  
+
+ //////////////////////////////////////////    //////////////////////////////////////////     //////////////////////////////////////////       
+function fnRefresh()
+{
+ Xrm.Utility.openEntityForm(Xrm.Page.data.entity.getEntityName(), Xrm.Page.data.entity.getId()); 
+
+}
+ //////////////////////////////////////////    //////////////////////////////////////////     //////////////////////////////////////////       
+
+function refreshRibbonOnChange(){
+   alert("Refresh!!");
+Xrm.Page.ui.refreshRibbon();
+}
+//    directioncode
+ //////////////////////////////////////////    //////////////////////////////////////////     //////////////////////////////////////////       
+frames[0].Xrm.Page.data.entity.getDataXml();
+
+Xrm.Page.data.entity.save();
+
+Xrm.Page.data.entity.refresh();   //  NE MARCHE PAS
+
+disabled the control Xrm.Page.getControl("fieldname").setDisabled(true);
+
+
+
+
+  // REFRESH to display the newly exposed fields' data.
+    // community.dynamics.com/.../173659
+    if (Xrm.Page.data.entity.getIsDirty()) {
+        Xrm.Page.data.save().then(function () {    // The save prevents "unsaved"-warning.
+            Xrm.Page.data.refresh();
+        }, null);
+    }
+
+
+
+
+ //////////////////////////////////////////    //////////////////////////////////////////     //////////////////////////////////////////         
+function fnNotificate()
+{
+   Xrm.Page.ui.setFormNotification("I clicked on a new button!!!", "INFO", "GEN")
+}
+function fnNotificate()
+{
+   if(Xrm.Page.getAttribute("subject") != null)
+    var val = Xrm.Page.getAttribute("subject").getValue();
+   Xrm.Page.ui.setFormNotification("The value is : " + val, "INFO", "GEN")
+}
+ //////////////////////////////////////////    //////////////////////////////////////////     //////////////////////////////////////////         
+
+
+
+SAVING:
+// Save the current record to prevent messages about unsaved changes
+
+Xrm.Page.data.entity.save();
+
+setTimeout(function () {
+
+   // Call the Open Entity Form method and pass through the current entity name and ID to force CRM to reload the record
+
+   Xrm.Utility.openEntityForm(Xrm.Page.data.entity.getEntityName(), Xrm.Page.data.entity.getId());
+
+}, 3000);
+
+// ONLY WORKS FOR "NEW" FORMS (form type = 1) :
+  myField.setValue(someValue); 
+  myField.setSubmitMode('always');
+  Xrm.Page.data.entity.save();
+crmForm.Save();
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+GET/SET FIELD VALUE:
+
+
+
+if(Xrm.Page.getAttribute("new_city") != null)
+    var city = Xrm.Page.getAttribute("new_city").getValue();
+
+For Lookup:
+
+var lookupObject = Xrm.Page.getAttribute("to_ledit_multi");
+   if (lookupObject != null)
+ {
+       var lookup = lookupObject.getValue();
+       if ((lookup != null))
+       {
+        var lookuptextvalue = lookup[0].name;
+        var lookupid =lookup[0].id;
+       var type = lookup[i].entityType;
+       }
+ }
+ 
+ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ 1) Single Line of Text or Multiple Line of Text field
+
+[code language="javascript"]
+    // GET and SET Single Line of Text or Multiple Line of Text field value
+    var functionName = function (executionContext) {
+
+        // Access the field on the form
+        var field = executionContext.getFormContext().getAttribute("name");
+
+        // Verify it does exist on the form
+        if (field != null) {
+
+            // Get its field value
+            var value = field.getValue();
+
+            // Set its field value
+            field.setValue("DynamicsLMP");
+        }
+    }
+[/code]
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+2) Two Options field
+
+[code language="javascript"]
+    // GET and SET Two Options field value
+    var functionName = function (executionContext) {
+
+        // Access the field on the form
+        var field = executionContext.getFormContext().getAttribute("donotemail");
+
+        // Verify it does exist on the form
+        if (field != null) {
+
+            // Get its field value; Returns true or false
+            var value = field.getValue();
+
+            // Set its field value to TRUE
+            field.setValue(true);
+        }
+    }
+[/code]
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+3) OptionSet field
+
+[code language="javascript"]
+    // GET and SET OptionSet field value
+    var functionName = function (executionContext) {
+
+        // Access the field on the form
+        var field = executionContext.getFormContext().getAttribute("customertypecode");
+
+        // Verify it does exist on the form
+        if (field != null) {
+
+            // Get its field value; Returns the OptionSet value
+            var value = field.getValue();
+
+            // Set its field value
+            field.setValue(3);
+        }
+    }
+[/code]
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+4) Multi-Select OptionSet field
+
+[code language="javascript"]
+    // GET and SET Multi-Select OptionSet field value
+    var functionName = function (executionContext) {
+
+        // Access the field on the form
+        var field = executionContext.getFormContext().getAttribute("multiselect_field");
+
+        // Verify it does exist on the form
+        if (field != null) {
+
+            // Get its field value; Returns the value of the selected items
+            var value = field.getValue();
+
+            // Set its field value
+            field.setValue([176650001, 176650002, 176650001]);
+        }
+    }
+[/code]
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+5) Whole Number field
+
+[code language="javascript"]
+    // GET and SET Whole Number field value
+    var functionName = function (executionContext) {
+
+        // Access the field on the form
+        var field = executionContext.getFormContext().getAttribute("numberofemployee");
+
+        // Verify it does exist on the form
+        if (field != null) {
+
+            // Get its field value; Returns the Whole Number value
+            var value = field.getValue();
+
+            // Set its field value
+            field.setValue(300);
+        }
+    }
+[/code]
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+6) Decimal Number field
+
+[code language="javascript"]
+    // GET and SET Decimal Number field value
+    var functionName = function (executionContext) {
+
+        // Access the field on the form
+        var field = executionContext.getFormContext().getAttribute("exchangerate");
+
+        // Verify it does exist on the form
+        if (field != null) {
+
+            // Get its field value; Returns the Decimal Number value
+            var value = field.getValue();
+
+            // Set its field value
+            field.setValue(99.99);
+        }
+    }
+[/code]
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+7) Floating-Point Number field
+
+[code language="javascript"]
+    // GET and SET Floating-Point Number field value
+    var functionName = function (executionContext) {
+
+        // Access the field on the form
+        var field = executionContext.getFormContext().getAttribute("address1_latitude");
+
+        // Verify it does exist on the form
+        if (field != null) {
+
+            // Get its field value; Returns the Floating-Point Number value
+            var value = field.getValue();
+
+            // Set its field value
+            field.setValue(-50.9934534);
+        }
+    }
+[/code]
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+8) Currency field
+
+[code language="javascript"]
+    // GET and SET Currency field value
+    var functionName = function (executionContext) {
+
+        // Access the field on the form
+        var field = executionContext.getFormContext().getAttribute("creditlimit");
+
+        // Verify it does exist on the form
+        if (field != null) {
+
+            // Get its field value; Returns the Currency value
+            var value = field.getValue();
+
+            // Set its field value
+            field.setValue(145000034);
+        }
+    }
+[/code]
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+9) Date and Time field
+
+[code language="javascript"]
+    // GET and SET Date and Time field value
+    var functionName = function (executionContext) {
+
+        // Access the field on the form
+        var field = executionContext.getFormContext().getAttribute("lastonholdtime");
+
+        // Verify it does exist on the form
+        if (field != null) {
+
+            // Get its field value; Returns the Date Time value
+            var value = field.getValue();
+
+            // Set its field value (Current Date and Time)
+            field.setValue(new Date());
+
+            // Set its field value to a specific Date and Time (ex. December 25, 2017 12:30AM)
+            field.setValue(new Date("12/25/2017 12:30AM"))
+        }
+    }
+[/code]
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+[code language="javascript"]
+    // GET and SET Lookup / Customer field value
+    var functionName = function (executionContext) {
+
+        // Access the field on the form
+        var field = executionContext.getFormContext().getAttribute("parentaccountid");
+
+        // Verify it does exist on the form
+        if (field != null) {
+
+            // Get its field value; Returns the Lookup object
+            var value = field.getValue();
+
+            // To get the Id, Name and Entity Name (account/contact)
+            var reocord_id = field.getValue()[0].id;
+            var record_name = field.getValue()[0].name;
+            var record_entityName = field.getValue()[0].entityType;
+
+            // Set its field value
+            field.setValue([{
+                id: reocord_id,
+                name: record_name,
+                entityType: record_entityName
+            }]);
+        }
+    }
+[/code]
+ At the time of writing of this post, there are two possible way to access fields in Dynamics 365/CRM that are on the form. That way will depend on what version of Dynamics 365/CRM you are using.
+
+For Microsoft Dynamics 365/CRM version 8.2 and BELOW
+• Xrm.Page.getAttribute(fieldname)
+
+For Microsoft Dynamics 365/CRM version 9.0 and ABOVE
+• ExecutionContext.getFormContext().getAttribute(fieldname);
+
+After Microsoft released v9.0 of Microsoft Dynamics 365, Xrm.page became deprecated that it have been replaced by ExecutionContext.getFormContext(). Existing JavaScript code that uses Xrm.Page will still work after v9.0 but will be totally removed/unsupported after a few more update.
+
+
+
+
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ ChangeFormTitle
+
+function ChangeFormTitle() {
+
+    //Get form type
+    var formType = Xrm.Page.ui.getFormType();
+
+    //Get the form name
+    var formName = Xrm.Page.ui.formSelector.getCurrentItem().getLabel();
+
+    //Checking the form type is create
+    if (formType == 1) {
+        //Checking the form name
+        if (formName == "Agreement") {
+            //Changing the form title
+            window.parent.document.getElementById("FormTitle").innerText = "New Agreement";
+        }
+
+        else if (formName == "Request") {
+            window.parent.document.getElementById("FormTitle").innerText = "New Request";
+        }
+    }
+
+}
+
+
+
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+function form_check_and_disable() 
+ { 
+  try 
+  { 
+  var formUserName = (Xrm.Page.context.getUserName()).toLowerCase(); 
+  
+  } 
+  catch(e) 
+  {    alert("Error:" + e.message);   } 
+ } 
+ 
+ function form_disable(bStatus) 
+ { 
+     var allAttributes = Xrm.Page.data.entity.attributes.get();
+     for (var i in allAttributes) { 
+            var myattribute = Xrm.Page.data.entity.attributes.get(allAttributes[i].getName()); 
+            var myname = myattribute.getName();          
+            if(Xrm.Page.getControl(myname) != null) {  
+                Xrm.Page.getControl(myname).setDisabled(bStatus);   
+             } 
+     } 
+ }   
+
+ function form_cancel_save() 
+ { 
+  try 
+  {
+  if(Xrm.Page.getControl("new_name") != null) 
+  {  
+  if (Xrm.Page.getControl("new_name").getDisabled()) 
+  {                                  // THE FIRST ARG IS THE EVENT CONTEXT 
+        arguments[0].getEventArgs().preventDefault();     //    Cancels the save operation  
+  } 
+ } 
+} 
+  catch(e)   {     alert("Error:" + e.message);   }
+ }
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+
+function CreateTlunotList(data) {
+
+    debugger;
+    var tlunaDiscountCount = 0;
+    var webAPIUrl = Xrm.Page.context.getClientUrl() + "/api/data/v8.2/new_tlunots?$select=new_tlunotid&$filter="
+
+var tlunaIdQuery = "";
+var datastr = "";
+
+//run on all the tlunot and collect guids to the one string
+
+for(var i=0;i<data.length;i++) {
+    datastr += data[i];
+    tlunaIdQuery += "new_tlunotid eq " + data[i].replace("{","").replace("}","");
+   if (i!=data.length-1) {
+        datastr += ",";
+        tlunaIdQuery += " or ";
+     }
+}
+
+
+
+
+var req = new XMLHttpRequest();
+
+req.open("GET", webAPIUrl + "("+tlunaIdQuery+") and new_nakat_peula eq false", false);
+req.setRequestHeader("OData-MaxVersion", "4.0");
+req.setRequestHeader("OData-Version", "4.0");
+req.setRequestHeader("Accept", "application/json");
+req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+req.setRequestHeader("Prefer", "odata.include-annotations=\"*\"");
+req.onreadystatechange = function () {
+
+    if (this.readyState === 4) {
+        req.onreadystatechange = null;
+        if (this.status === 200)
+        {
+            var results = JSON.parse(this.response);
+            tlunaDiscountCount = results.value.length;
+        }
+        else
+        {
+            Xrm.Utility.alertDialog(this.statusText);
+        }
+    }
+};
+
+req.send();
+
+//open new quick create screen and pre populte the data
+
+var parameters = { new_tlunot: datastr, new_mispar_tlunot_bahaglata: data.length, new_mispar_hanahot_nakat_paam_1_bahahlata: tlunaDiscountCount };
+
+Xrm.Utility.openQuickCreate("new_hachlata_lekvutatz_tlunot",null,parameters);
+
+};
+
+
+
+
+@@@@@@@@@@CREATE ENTITY@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+var entity = {};
+entity.phonenumber = "123123123";
+entity.subject = "DESDEWA";
+
+var req = new XMLHttpRequest();
+req.open("POST", Xrm.Page.context.getClientUrl() + "/api/data/v8.2/phonecalls", true);
+req.setRequestHeader("OData-MaxVersion", "4.0");
+req.setRequestHeader("OData-Version", "4.0");
+req.setRequestHeader("Accept", "application/json");
+req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+req.onreadystatechange = function() {
+    if (this.readyState === 4) {
+        req.onreadystatechange = null;
+        if (this.status === 204) {
+            var uri = this.getResponseHeader("OData-EntityId");
+            var regExp = /\(([^)]+)\)/;
+            var matches = regExp.exec(uri);
+            var newEntityId = matches[1];
+        } else {
+            Xrm.Utility.alertDialog(this.statusText);
+        }
+    }
+};
+req.send(JSON.stringify(entity));
+
+@@@@@@@@@@ GET FIELDS from MANY_TO_ONE ENTITY @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+image.png
+
+<html><head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script> 
+   
+    function fnGetContactDetails() {
+
+      debugger;
+      let gPrimaryEntityId = parent.Xrm.Page.data.entity.getId();
+
+      if (gPrimaryEntityId) {
+
+        gPrimaryEntityId = gPrimaryEntityId.replace("{", "").replace("}", "");
+
+        parent.$.ajax({
+          type: "GET",
+          contentType: "application/json; charset=utf-8",
+          datatype: "json",
+          url: encodeURI(parent.Xrm.Page.context.getClientUrl() + "/api/data/v8.2/phonecalls(" + gPrimaryEntityId + ")?$select=activityid,phonenumber&$expand=regardingobjectid_contact_phonecall($select=contactid,fullname,accountrolecode,emailaddress1,telephone1,mobilephone,company)"),
+          beforeSend: function (XMLHttpRequest) {
+            XMLHttpRequest.setRequestHeader("OData-MaxVersion", "4.0");
+            XMLHttpRequest.setRequestHeader("OData-Version", "4.0");
+            XMLHttpRequest.setRequestHeader("Accept", "application/json");
+            XMLHttpRequest.setRequestHeader("Prefer", "odata.include-annotations=\"*\"");
+          },
+          async: true,
+          success: function (data, textStatus, xhr) {
+            var result = data;
+            var activityid = result["activityid"];
+            var phonenumber = result["phonenumber"];
+            if (result.hasOwnProperty("regardingobjectid_contact_phonecall")) {
+              var contactid = result["regardingobjectid_contact_phonecall"]["contactid"];
+              var fullname = result["regardingobjectid_contact_phonecall"]["fullname"];
+              let accountrolecode = result["regardingobjectid_contact_phonecall"]["accountrolecode"];
+              let emailaddress1 = result["regardingobjectid_contact_phonecall"]["emailaddress1"];
+              let telephone1 = result["regardingobjectid_contact_phonecall"]["telephone1"];
+              let company = result["regardingobjectid_contact_phonecall"]["company"];
+              let mobilephone = result["regardingobjectid_contact_phonecall"]["mobilephone"];
+
+
+              document.getElementById("msg").innerHTML = fullname + "<br>" + // accountrolecode + "<br>" + 
+                         emailaddress1 + "<br>" + telephone1 + "<br>" + company + "<br>" + mobilephone;
+
+            document.getElementById("btnIshKesher").style.display = "none";
+              // parent.Xrm.Utility.alertDialog(fullname);
+            }
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            parent.Xrm.Utility.alertDialog(textStatus + " " + errorThrown);
+          }
+        });
+      }
+      else {
+        parent.Xrm.Page.ui.alert("No ID for Primary Entity");
+      }
+    }
+
+</script>
+<meta><meta><meta><meta><meta><meta><meta><meta><meta><meta><meta><meta><meta><meta><meta><meta><meta><meta><meta><meta><meta></head><body style="direction: rtl; overflow-wrap: break-word;">
+
+
+<div class="container">
+  <div class="jumbotron">
+    <h3>פרטי איש קשר</h3> 
+    <button id="btnIshKesher" class="btn btn-secondary" onclick="fnGetContactDetails()">הצג פרטי איש קשר</button> 
+    <b><div id="msg"></div></b> 
+</div>
+
+</div></body></html> 
+    
+}
+
+
+
+@@@@@@@@@@UTILITIES@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+function cfnSetValue(att){
+Xrm.Page.ui.setFormNotification("Setting default value for field : " + att);
+let ctl = Xrm.Page.data.entity.attributes.get(att);
+let val = prompt("Please type a phone number","111111111");
+ctl.setValue(val);
+
+}
+var cfnDisableControl = (ctl) => {
+Xrm.Page.getControl(ctl).setDisabled(true);
+Xrm.Page.ui.alert("Disabled control : " + ctl);
+} 
+var cfnSetFocus = function(ctx,ctl){
+
+Xrm.Page.getControl(ctl).setFocus(true);
+ctx.getEventArgs().preventDefault();
+}
+
+
+
