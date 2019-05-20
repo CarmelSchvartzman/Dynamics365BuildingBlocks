@@ -1,0 +1,36 @@
+ExecuteTransactionRequest requestToUpdateRecords = new ExecuteTransactionRequest()
+{
+    Requests = new OrganizationRequestCollection(),
+    ReturnResponses = true
+};
+
+//This can be an update or creation or delete request
+requestToUpdateRecords.Add(UpdateRequest);
+
+try
+{
+    var responseForUpdateRecords =
+        (ExecuteTransactionResponse)_serviceProxy.Execute(requestToUpdateRecords);
+
+    int i = 0;
+    // Display the results returned in the responses.
+    foreach (var responseItem in responseForUpdateRecords.Responses)
+    {
+        if (responseItem != null)
+            DisplayResponse(requestToUpdateRecords.Requests[i], responseItem);
+        i++;
+    }
+}
+catch (FaultException<OrganizationServiceFault> ex)
+{
+    Console.WriteLine("Create request failed for the account{0} and the reason being: {1}",
+        ((ExecuteTransactionFault)(ex.Detail)).FaultedRequestIndex + 1, ex.Detail.Message);
+}
+
+
+
+
+
+
+
+
