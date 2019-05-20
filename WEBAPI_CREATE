@@ -1,14 +1,17 @@
-//////// HTML + JS :  creates a MANY-TO-ONE between phonecall to contact :
+//////// PHONECALL ENTITY (CHILD)
+////////   creates a MANY-TO-ONE rel between phonecall to contact :
+////////   1) creates a Contact -> HTTP POST
+////////   2) gets the GUID of the new Contact , and
+////////   3) updates Phonecall to set the MANY-TO-ONE rel to Contact ("regardingobjectid_contact@odata.bind") -> HTTP PATCH
 
-<html>
-<head>
+<html><head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script>
-    
-    ///// BIND CONTACT TO EXISTENT PHONECALL:
-          var fnPATCHRelatedEntity = (newEntityId) => {
+
+
+        var fnPATCHRelatedEntity = (newEntityId) => {
             //debugger;
             var entity = {};
             entity["regardingobjectid_contact@odata.bind"] = "/contacts(" + newEntityId + ")";
@@ -36,10 +39,8 @@
             });
 
         }
-    
-    
-    //// CREATE CONTACT:
-    var fnCreateContact = () => {
+
+        var fnCreateContact = () => {
             //debugger;
             var entity = {};
             entity.address1_telephone1 = document.getElementById("Phone").value;
@@ -66,7 +67,7 @@
                     let newEntityId = matches[1];
                     if (newEntityId != null) {
 
-                       //////// fnPATCHRelatedEntity(newEntityId);
+                        fnPATCHRelatedEntity(newEntityId);
                     }
 
 
@@ -77,17 +78,24 @@
                 }
             });
         }
-      </script>
- 
-</head>
+
+
+    </script>
+    <meta>
+    <meta>
+    <meta>
+    <meta>
+    <meta>
+    <meta>
+<meta></head>
 <body style="direction: rtl; overflow-wrap: break-word;">
 
     <div class="container">
         <div class="jumbotron">
             <h3>יצירת איש קשר חדש</h3>
-            <p><h5>נא מלא פרטי האיש קשר </h5></p>
-            <p><h5>האיש קשר החדש ייקושר לשיחת טלפון</h5></p>
-            <table  class="form-group" style="font:12px;border-spacing:3px;margin:5px;">
+            <p></p><h5>נא מלא פרטי האיש קשר </h5><p></p>
+            <p></p><h5>האיש קשר החדש ייקושר לשיחת טלפון</h5><p></p>
+            <table class="form-group" style="font:12px;border-spacing:3px;margin:5px;">
                 <tbody>
                     <tr>
                         <td><label for="FirstName">שם פרטי: </label></td>
@@ -115,11 +123,4 @@
 
         </div>
     </div>
-
-
-
-
-
-</body>
-</html>     
-        
+</body></html>       
