@@ -1,0 +1,51 @@
+public class PlugInCreate : IPlugin
+{
+    public void Execute(IServiceProvider serviceProvider)
+    {
+
+      var _tracing = (ITracingService)serviceProvider.GetService(typeof(ITracingService));
+      var _context = (IPluginExecutionContext)serviceProvider.GetService(typeof(IPluginExecutionContext));
+      var _svc = ((IOrganizationServiceFactory)serviceProvider.GetService(typeof(IOrganizationServiceFactory)))
+                                                 .CreateOrganizationService(_context.UserId);
+
+        _tracing.Trace("TESTPI : PlugIn_Create - chunk 01");
+
+        if (_context.Stage == 10 && ((Entity)_context.InputParameters["Target"]).LogicalName != "contact")
+            throw new InvalidPluginExecutionException("The PI does not refer to a Contact");
+
+        Guid gPrimary = _context.PrimaryEntityId;
+        Guid id;
+        try
+        {
+            Entity oEntity = new Entity("task");
+            oEntity.Attributes.Add("subject", oEntity);
+            oEntity["subject"] = "Created from PI_" + DateTime.Now.ToString("dd-MM-yy_HH-mm");
+            oEntity["description"] = "Created IServiceProvider";
+            oEntity["scheduledstart"] = DateTime.Now.AddDays(7);
+            oEntity["scheduledend"] = DateTime.Now.AddDays(7);
+            oEntity["category"] = _context.PrimaryEntityName;
+
+            // SINGLE-VALUED NAVIGATION PROPERTY - LOOKUP - MANY-TO-ONE :
+            if (_context.OutputParameters.Contains("id"))
+            {
+                Guid regardingobjectid = new Guid(_context.OutputParameters["id"].ToString());
+                string regardingobjectidType = "contact";
+
+                oEntity["regardingobjectid"] = new EntityReference(regardingobjectidType, regardingobjectid);
+            }
+
+
+
+            id = _svc.Create(oEntity);
+            _tracing.Trace("TESTPI : PlugIn_Create - chunk 02");
+
+
+
+        }
+        catch (FaultException<OrganizationServiceFault> ex)
+        {
+            _tracing.Trace("TESTPI : PlugIn_Create CREATION ERROR: {0}", ex.ToString());
+            throw;
+        }
+    }
+}
