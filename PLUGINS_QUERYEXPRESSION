@@ -1,6 +1,9 @@
 RETRIEVE MULTIPLE - INTERSECT ENTITY : ONE-TO-MANY 
 select ..... from .... inner join ... where .....  
- need to specify conditionExpression and Condition Operators - supports condition operators “Beginswith, Doesn’tbeginwith, Endswith,…” - group the conditions in filter criteria by using grouped AND / OR - maximum 5000 records in a single call - Can use Paging cookie  
+ need to specify conditionExpression and Condition Operators - 
+ supports condition operators “Beginswith, Doesn’tbeginwith, Endswith,…” - 
+ group the conditions in filter criteria by using grouped AND / OR - maximum 5000 records in a single call - 
+ Can use Paging cookie  
 
 
 #region Retrieve records from an intersect table via QueryExpression
