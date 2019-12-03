@@ -66,7 +66,8 @@ EntityCollection retrievedAccounts=(EntityCollection)OPCrmService.RetrieveMultip
                 EntityCollection qel = _svc.RetrieveMultiple(qOneToMany);
                 foreach (Entity e in qel.Entities)
                 {
-                    _tracing.Trace(String.Format("TESTPI: PlugIn_Create RETRIEVED MULTIPLE - LINKED QUERYEXPRESSION data: Subject : {0} - Desc : {1}", e["subject"], e["description"]));
+                    _tracing.Trace(String.Format("TESTPI: PlugIn_Create RETRIEVED MULTIPLE - LINKED QUERYEXPRESSION 
+                    data: Subject : {0} - Desc : {1}", e["subject"], e["description"]));
                 }
                 
                 
