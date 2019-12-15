@@ -15,7 +15,8 @@
 
                         foreach (Entity mocher1 in entityCollection.Entities)
                         {
-                            sbMochrim.AppendFormat(" MocherId : {0} - MocherName : {1}  " + Environment.NewLine, mocher1.Id, mocher1.LogicalName);
+                            sbMochrim.AppendFormat(" MocherId : {0} - MocherName : {1}  " 
+                                           + Environment.NewLine, mocher1.Id, mocher1.LogicalName);
                             memberGuids.Add(((EntityReference)mocher1.Attributes["entityid"]).Id);
                         }
                     }
