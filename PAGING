@@ -56,7 +56,7 @@ while (true)
     // Check for more records, if it returns true.
     if (results.MoreRecords)
     {
-        Console.WriteLine("\n****************\nPage number {0}\n****************", pagequery.PageInfo.PageNumber);
+        Console.WriteLine("\n****\nPage number {0}\n******", pagequery.PageInfo.PageNumber);
         Console.WriteLine("#\tAccount Name\t\tEmail Address");
 
         // Increment the page number to retrieve the next page.
