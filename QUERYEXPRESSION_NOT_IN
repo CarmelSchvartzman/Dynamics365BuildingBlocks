@@ -1,0 +1,17 @@
+/// SQL :
+
+
+
+
+
+/// XRM :
+
+QueryExpression qx = new QueryExpression("lead");  
+qx.ColumnSet.AddColumn("subject");  
+  
+LinkEntity link = qx.AddLink("task", "leadid", "regardingobjectid", JoinOperator.LeftOuter);  
+link.Columns.AddColumn("subject");  
+link.EntityAlias = "tsk";  
+  
+qx.Criteria = new FilterExpression();  
+qx.Criteria.AddCondition("tsk", "activityid", ConditionOperator.Null);
