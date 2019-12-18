@@ -1,6 +1,10 @@
-/// SQL :
+/// SQL : 
 
-
+SELECT lead.FullName  
+FROM Leads as lead  
+LEFT OUTER JOIN Tasks as ab  
+ON (lead.leadId  =  ab.RegardingObjectId)  
+WHERE ab.RegardingObjectId is null
 
 
 
