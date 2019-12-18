@@ -19,3 +19,13 @@ link.EntityAlias = "tsk";
   
 qx.Criteria = new FilterExpression();  
 qx.Criteria.AddCondition("tsk", "activityid", ConditionOperator.Null);
+
+
+
+
+
+
+
+
+
+
