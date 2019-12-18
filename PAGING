@@ -1,4 +1,5 @@
-// Query using the paging cookie.
+// https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/org-service/page-large-result-sets-with-queryexpression
+//  Query using the paging cookie.
 // Define the paging attributes.
 // The number of records per page to retrieve.
 int queryCount = 3;
