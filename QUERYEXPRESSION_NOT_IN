@@ -1,4 +1,4 @@
-/// SQL : 
+/// SQL : https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/org-service/use-left-outer-join-queryexpression-query-records-not-in
 
 SELECT lead.FullName  
 FROM Leads as lead  
