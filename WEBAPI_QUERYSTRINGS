@@ -17,12 +17,14 @@ MANY-TO-ONE:
                                     ?$select=activityid,phonenumber
                                     &$expand=regardingobjectid_contact_phonecall($select=contactid,fullname)
                                     
-....../api/data/v8.2/tasks?$select=subject,description&$expand=regardingobjectid_contact($select=firstname,lastname)  
+....../api/data/v8.2/tasks?$select=subject,description
+                                    &$expand=regardingobjectid_contact($select=firstname,lastname)  
 
 
 ONE-TO-MANY:
 ....../api/data/v8.2/contacts(5810ef74-e1ca-e811-80f6-00155da926a3)
-                          ?$select=contactid,fullname&$expand=Contact_Phonecalls($select=phonenumber)
+                          ?$select=contactid,fullname
+                                    &$expand=Contact_Phonecalls($select=phonenumber)
 
 ....../api/data/v8.2/phonecalls?$filter=modifiedon ge 2017-01-01 and modifiedon le 2019-03-01
                            &$select=activityid,phonenumber&$top=100
