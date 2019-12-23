@@ -6,7 +6,9 @@
 ....../api/data/v8.2/phonecalls?$filter=phonenumber eq '67'&$select=activityid,phonenumber&$top=10
 ....../api/data/v8.2/phonecalls(phonenumber='56')?$filter=phonenumber%20eq%20%2756%27&$select=activityid,phonenumber,createdon
 ....../api/data/v8.2/phonecalls(phonenumber='456456')?$expand=regardingobjectid_lead_phonecall
-....../api/data/v8.2/phonecalls(phonenumber='456456')?$select=activityid,phonenumber&$expand=regardingobjectid_lead_phonecall($select=firstname,fullname,lastname)
+....../api/data/v8.2/phonecalls(phonenumber='456456')
+                                      ?$select=activityid,phonenumber&$expand=regardingobjectid_lead_phonecall
+                                                 ($select=firstname,fullname,lastname)
 
 
 MANY-TO-ONE:
