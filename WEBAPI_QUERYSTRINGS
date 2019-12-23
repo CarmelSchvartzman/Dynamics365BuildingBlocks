@@ -13,7 +13,10 @@
 
 
 MANY-TO-ONE:
-....../api/data/v8.2/phonecalls(phonenumber='678910')?$select=activityid,phonenumber&$expand=regardingobjectid_contact_phonecall($select=contactid,fullname)
+....../api/data/v8.2/phonecalls(phonenumber='678910')
+                                    ?$select=activityid,phonenumber
+                                    &$expand=regardingobjectid_contact_phonecall($select=contactid,fullname)
+                                    
 ....../api/data/v8.2/tasks?$select=subject,description&$expand=regardingobjectid_contact($select=firstname,lastname)  
 
 
