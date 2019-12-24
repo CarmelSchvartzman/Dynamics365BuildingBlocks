@@ -1,0 +1,29 @@
+///////   https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/org-service/use-filterexpression-class
+
+
+///////  ([FirstName] = 'Joe' OR [FirstName] = 'John') AND [City] = 'Redmond'  :
+
+
+QueryExpression query = new QueryExpression("contact");   
+query.ColumnSet.AddColumns("firstname", "lastname", "address1_city");   
+  
+query.Criteria = new FilterExpression();   
+query.Criteria.AddCondition("address1_city", ConditionOperator.Equal, "Redmond");   
+  
+FilterExpression childFilter = query.Criteria.AddFilter(LogicalOperator.Or);   
+childFilter.AddCondition("lastname", ConditionOperator.Equal, "Tharpe");   
+childFilter.AddCondition("lastname", ConditionOperator.Equal, "Brown");   
+  
+// Pass query to service proxy   
+EntityCollection results = _serviceProxy.RetrieveMultiple(query);   
+Console.WriteLine();   
+Console.WriteLine("Query using QE with multiple conditions and filters");   
+Console.WriteLine("---------------------------------------");   
+  
+// Print results   
+foreach (var a in results.Entities)   
+{   
+Console.WriteLine("Name: {0} {1}", a.GetAttributeValue<string>("firstname"), a.GetAttributeValue<string>("lastname"));   
+Console.WriteLine("City: {0}", a.GetAttributeValue<string>("address1_city"));   
+}   
+Console.WriteLine("---------------------------------------"); 
