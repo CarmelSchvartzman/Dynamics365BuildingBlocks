@@ -1,0 +1,5 @@
+///////////////  JAVASCRIPT :
+
+////  Hide Tab :
+Xrm.Page.ui.tabs.get("tab_name").sections.get("section_name").setVisible(false);
+
