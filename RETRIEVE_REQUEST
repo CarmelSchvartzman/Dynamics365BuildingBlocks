@@ -23,7 +23,7 @@ Console.WriteLine("Account Name: {0}",retrievedAccount["name"]);
 
 var tasks = retrievedAccount.RelatedEntities[new Relationship("Account_Tasks")];
 
-Console.WriteLine("Tasks:");
+
 tasks.Entities.ToList().ForEach(x => {
   Console.WriteLine(" Task Subject: {0}",x["subject"]);
 });
