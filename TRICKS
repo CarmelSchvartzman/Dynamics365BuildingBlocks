@@ -3,3 +3,7 @@
 ////  Hide Tab :
 Xrm.Page.ui.tabs.get("tab_name").sections.get("section_name").setVisible(false);
 
+Xrm.Page.getAttribute('mobilephone').setRequiredLevel('required'); 
+
+
+
