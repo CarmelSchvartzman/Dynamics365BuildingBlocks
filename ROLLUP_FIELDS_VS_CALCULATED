@@ -1,0 +1,18 @@
+Roll Up Field:
+
+The rollups are calculated by scheduled system jobs that run asynchronously in the background.
+A rollup field contains an aggregate value computed over the records related to a specified record
+The roll up fields comprise of Aggregation that use the fields from the current entity or related child entities.
+Wide selection of aggregate functions. You can aggregate data by using the following functions: SUM, COUNT, MIN, MAXand AVG
+
+
+Calculated Field:
+
+Data is calculated as soon as form is loaded
+calculated fields let you automate manual calculations used in your business processes.
+The calculated fields comprise of calculations that use the fields from the current entity or related parent entities.
+ADDHOURS, ADDDAYS, ADDWEEKS, ADDMONTHS, ADDYEARS, SUBTRACTHOURS, SUBTRACTDAYS, SUBTRACTWEEKS, SUBTRACTMONTHS,
+SUBTRACTYEARS, DIFFINDAYS, DIFFINHOURS, DIFFINMINUTES, DIFFINMONTHS, DIFFINWEEKS, DIFFINYEARS, CONCAT, TRIMLEFT, and TRIMRIGHT.
+The available data types for the calculated field:
+Single line of text,Option Set,Two Options,Whole Number,Decimal Number,Currency,Date and Time
+
