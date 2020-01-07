@@ -33,4 +33,15 @@ Update	POST	Yes	      Yes
 Delete	PRE	  Yes	      No
 Delete	POST	Yes      	No
 
+PIPELINE STAGES:
 
+Event   Stage name       Stage number     Description
+
+Pre-Event Pre-validation 10             May execute outside the database transaction. prior to security checks.
+
+Pre-Event Pre-operation  20             Within the database transaction.
+
+Core Operation MainOperation 30         In-transaction main operation of the system, such as create, update, delete, and so on.
+                                                    For internal use only.
+
+Post-Event  Post-operation   40         Within the database transaction.
