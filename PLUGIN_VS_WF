@@ -21,3 +21,16 @@ Real Time Workflow (NOT BACKGROUND) has TRANSACTION
 PROCESS WF :
 
 Workflows are always post operation.
+
+IMAGES:
+
+
+Message	Stage	Pre-Image	Post-Image
+Create	PRE	  No	      No
+Create	POST	No	      Yes
+Update	PRE 	Yes	      No
+Update	POST	Yes	      Yes
+Delete	PRE	  Yes	      No
+Delete	POST	Yes      	No
+
+
