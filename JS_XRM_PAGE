@@ -24,6 +24,7 @@ Xrm.Page.context.GetClientUrl();
 
 2) DATA:
 Xrm.Page.getAttribute("").getValue();
+Xrm.Page.getAttribute("statuscode").setValue("");
 Xrm.Page.data.entity.attributes.get("emailaddress1");
 Xrm.Page.data.entity.getEntityName    // logical
 Xrm.Page.data.entity.getEntityReference       //    lookup value that references the record 
