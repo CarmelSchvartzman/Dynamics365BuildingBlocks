@@ -5,6 +5,9 @@ Can only run for 2 minutes
 Only run as result of event TRIGGER
 Can run offline
 Can render CHILDREN
+you need to manipulate data before is saved.
+you need to make validations before submitting the operation.
+you want to be able to cancel an operation based on your validations.
 
 CUSTOM WF :
 
