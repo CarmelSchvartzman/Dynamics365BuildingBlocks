@@ -1,0 +1,16 @@
+PLUGIN :
+
+Flexible can run in context of user, system or specific.
+Can only run for 2 minutes
+Only run as result of event TRIGGER
+Can run offline
+Can render CHILDREN
+
+CUSTOM WF :
+
+Always run in the context of owner of  workflow
+Can run for long time
+Can run on demand
+User can track progress
+Can’t run offline
+Real Time Workflow (NOT BACKGROUND) has TRANSACTION
