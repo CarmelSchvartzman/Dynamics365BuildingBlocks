@@ -14,3 +14,7 @@ Can run on demand
 User can track progress
 Can’t run offline
 Real Time Workflow (NOT BACKGROUND) has TRANSACTION
+
+PROCESS WF :
+
+Workflows are always post operation.
