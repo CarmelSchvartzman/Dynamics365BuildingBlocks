@@ -1,5 +1,8 @@
 /// SQL : https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/org-service/use-left-outer-join-queryexpression-query-records-not-in
 
+///  ONE-TO-MANY : pero no tiene children :  LEFT OUTER
+
+
 SELECT lead.FullName  
 FROM Leads as lead  
 LEFT OUTER JOIN Tasks as ab  
