@@ -8,9 +8,10 @@ QueryExpression query = new QueryExpression("contact");
 query.ColumnSet.AddColumns("firstname", "lastname", "address1_city");   
   
 query.Criteria = new FilterExpression();   
-query.Criteria.AddCondition("address1_city", ConditionOperator.Equal, "Redmond");   
+
+query.Criteria.AddCondition("address1_city", ConditionOperator.Equal, "Redmond");   // CONDITION 1 : FILTEREXPRESSION #1
   
-FilterExpression childFilter = query.Criteria.AddFilter(LogicalOperator.Or);   
+FilterExpression childFilter = query.Criteria.AddFilter(LogicalOperator.Or);   // CONDITION 2 : FILTEREXPRESSION #2
 childFilter.AddCondition("lastname", ConditionOperator.Equal, "Tharpe");   
 childFilter.AddCondition("lastname", ConditionOperator.Equal, "Brown");   
   
