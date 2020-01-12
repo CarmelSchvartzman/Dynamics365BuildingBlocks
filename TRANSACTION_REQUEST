@@ -1,0 +1,47 @@
+///////   https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/org-service/use-executetransaction :
+
+
+var requestToCreateRecords = new ExecuteTransactionRequest()    //  <<<<<<<<<<<<<<<<<<  ExecuteTransactionRequest
+{
+// Create an empty organization request collection.
+Requests = new OrganizationRequestCollection(),
+ReturnResponses = true
+};
+
+var input = new EntityCollection()
+{
+   EntityName = Account.EntityLogicalName,
+   Entities = {
+            new Account { Name = "ExecuteTransaction Example Account 1" },
+            new Account { Name = "ExecuteTransaction Example Account 2" }
+        }
+};
+
+foreach (var entity in input.Entities)
+{
+   CreateRequest createRequest = new CreateRequest { Target = entity };  // <<<<<<<<    CreateRequest 
+   requestToCreateRecords.Requests.Add(createRequest);
+}
+
+// Execute all the requests in the request collection using a single web method call.
+try
+{
+var responseForCreateRecords =
+    (ExecuteTransactionResponse)svc.Execute(requestToCreateRecords);
+
+int i = 0;
+// Display the results returned in the responses.
+foreach (var responseItem in responseForCreateRecords.Responses)
+{
+    if (responseItem != null)
+    Console.WriteLine("Created " + ((Account)requestToCreateRecords.Requests[i].Parameters["Target"]).Name
+        + " with account id as " + responseItem.Results["id"].ToString());
+    i++;
+}
+}
+catch (FaultException<OrganizationServiceFault> ex)
+{
+Console.WriteLine("Create request failed for the account{0} and the reason being: {1}",
+    ((ExecuteTransactionFault)(ex.Detail)).FaultedRequestIndex + 1, ex.Detail.Message);
+throw;
+}
