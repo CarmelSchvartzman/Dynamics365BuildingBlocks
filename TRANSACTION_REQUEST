@@ -23,14 +23,12 @@ foreach (var entity in input.Entities)
    requestToCreateRecords.Requests.Add(createRequest);
 }
 
-// Execute all the requests in the request collection using a single web method call.
 try
 {
-var responseForCreateRecords =
-    (ExecuteTransactionResponse)svc.Execute(requestToCreateRecords);
+   var responseForCreateRecords =
+    (ExecuteTransactionResponse)svc.Execute(requestToCreateRecords);   // <<< Execute all the requests in single web method call
 
 int i = 0;
-// Display the results returned in the responses.
 foreach (var responseItem in responseForCreateRecords.Responses)
 {
     if (responseItem != null)
