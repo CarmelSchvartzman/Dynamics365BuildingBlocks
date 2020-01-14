@@ -1,0 +1,15 @@
+/////  https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/workflow/workflow-extensions
+
+Activity    	Workflow	Action	Dialog
+Query Data	              		    X
+Assign Value      		    X       X
+Create Record	    X     	X     	X
+Update Record	    X     	X     	X
+Assign Record	    X     	X     	X
+Send Email	      X     	X     	X
+Start Child WF	  X     	X     	X
+Perform Action	  X     	X     	
+Link Child Dialog		            	X
+Change Status	    X     	X     	X
+Stop Workflow	    X     	X     	
+Stop Dialog			                  X
