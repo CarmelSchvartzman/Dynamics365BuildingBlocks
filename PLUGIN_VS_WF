@@ -37,6 +37,11 @@ On the contrary, if executed ONDEMAND, the security context of the user who exec
 
 Plug-ins execute under the security context of the CRM Web application pool identity (typically NETWORK SERVICE). 
 As this account typically maps to generic CRM SYSTEM user this typically works fine.
+However, within plug-ins you can make use of impersonation to work under the credentials of the user who is making the request. 
+For doing so, you just need to pass True to the CreatCrmService method under the context object.
+If you need to always impersonate with a specific user, you can do that by passing True as above 
+and setting impersonatinguserid attribute while registering the plug-in.
+Plug-in impersonation does not work offline: The logged on user credentials are always used in this case.
 // https://cloudblogs.microsoft.com/dynamics365/no-audience/2010/06/25/plug-ins-vs-workflows-in-microsoft-dynamics-crm/
 
 IMAGES:
