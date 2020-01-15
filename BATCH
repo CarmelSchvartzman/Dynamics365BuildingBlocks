@@ -1,0 +1,16 @@
+////  https://www.wisdomjobs.com/e-university/batch-script-tutorial-1820/batch-script-variables-23056.html
+
+@echo off
+set message=Hello World
+echo %message%
+
+set globalvar=5
+SETLOCAL         <<<<<<<<<<<<<<<<<  After calling SETLOCAL, any variable assignments revert upon calling ENDLOCAL
+set var=13145
+set /A var=%var% + 5
+echo %var%
+echo %globalvar%
+ENDLOCAL
+
+
+
