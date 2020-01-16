@@ -1,3 +1,5 @@
+//  http://dyn365apps.com/2018/10/16/managed-or-unmanaged-how-to-decide-which-one-to-choose/
+
 SOLUTION:
 export and transfer items from one CRM to another instance
 
@@ -5,7 +7,7 @@ MANAGED:
 if you uninstall the managed solution, all fields and forms and web resources (= all customizations) 
 you added to the system with this solution will be also deleted. ALSO the data will be deleted!!
 The advantage of a managed solution is, that no user can remove components or change the solution.
-CAN BE ROLLED BACK!!
+CAN BE ROLLED BACK!! The Managed solutions include a layering process. 
  If you have multiple Managed solutions customising the same component, you need to follow LIFO (last in first out)
             process to remove components.  With Unmanaged, you can simply delete the component from the system.  
  Using Managed solutions doesn’t mean the components in the solution can’t be customised: can’t be customised using the same solution
