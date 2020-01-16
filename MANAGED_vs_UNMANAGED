@@ -10,4 +10,4 @@ CAN BE ROLLED BACK!!
 
 
 UNMANAGED:
-
+customizations are written to the system like you have done them manually. This means after uninstalling an unmanaged solution, nothing happens. All customizations are still in the system. This is helpful to transfer you customizations but may offer problems, if you would like to roll back to the state before you installed the solution.
