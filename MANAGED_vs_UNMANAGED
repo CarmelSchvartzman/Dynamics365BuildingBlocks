@@ -2,7 +2,8 @@ SOLUTION:
 export and transfer items from one CRM to another instance
 
 MANAGED:
-
+if you uninstall the managed solution, all fields and forms and web resources (= all customizations) 
+you added to the system with this solution will be also deleted. ALSO the data will be deleted!!
 
 
 
