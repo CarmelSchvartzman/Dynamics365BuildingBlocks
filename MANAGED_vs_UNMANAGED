@@ -15,4 +15,4 @@ UNMANAGED:
 customizations are written to the system like you have done them manually. 
 This means after uninstalling an unmanaged solution, nothing happens. All customizations are still in the system. 
 if you would like to roll back to the state before you installed the solution.
-Unmanaged solution import will overwrite the existing customisations of components.  
+Unmanaged solution import will overwrite the existing customisations of components, since there’s only one version of a component. 
