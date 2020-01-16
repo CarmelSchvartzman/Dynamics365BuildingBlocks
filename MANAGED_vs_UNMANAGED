@@ -1,4 +1,5 @@
 //  http://dyn365apps.com/2018/10/16/managed-or-unmanaged-how-to-decide-which-one-to-choose/
+//  https://docs.microsoft.com/en-us/dynamics365/customerengagement/on-premises/developer/introduction-solutions
 
 SOLUTION:
 export and transfer items from one CRM to another instance
@@ -12,9 +13,25 @@ CAN BE ROLLED BACK!! The Managed solutions include a layering process.
             process to remove components.  With Unmanaged, you can simply delete the component from the system.  
  Using Managed solutions doesn’t mean the components in the solution can’t be customised: can’t be customised using the same solution
                          but they can be customised using another solution. 
-
+ As long as a managed solution enables customization of its solution components, 
+          other managed solutions can be installed on top of it and modify any customizable solution components that it provides.
+ Using managed properties, you
+          can control whether a solution component is customizable 
+          and which specific parts of it can be customized: display name - create new forms - new views
+ 
 UNMANAGED:
 customizations are written to the system like you have done them manually. 
 This means after uninstalling an unmanaged solution, nothing happens. All customizations are still in the system. 
 if you would like to roll back to the state before you installed the solution.
 Unmanaged solution import will overwrite the existing customisations of components, since there’s only one version of a component. 
+When you import an unmanaged solution, you can edit its components in the new organization.
+When you create an unmanaged solution, you create a way to group a subset of the available customizable solution components:
+        the solution components in an unmanaged solution are references to customizable solution components in the organization.
+
+Conflict resolution
+When two or more solutions define solution components differently, Merge and Top Wins : 
+           User interface components (command bar, ribbons, forms, and site map) are merged.
+           For all other solution components any conflict is calculated in favor of the customization that is applied last.
+           https://docs.microsoft.com/en-us/dynamics365/customerengagement/on-premises/developer/introduction-solutions
+           
+           
