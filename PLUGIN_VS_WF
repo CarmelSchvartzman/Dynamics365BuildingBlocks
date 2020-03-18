@@ -1,4 +1,4 @@
-PLUGIN :
+PLUGIN :    PRE - POSTOPERATION
 
 IF:     
 manipulate data before is saved 
@@ -15,7 +15,10 @@ you need to manipulate data before is saved.
 you need to make validations before submitting the operation.
 you want to be able to cancel an operation based on your validations.
 
-CUSTOM WF :
+
+
+
+WF : 
 
 IF:
 simple tasks : such as sending an e-mail or creating / updating assigning records 
@@ -30,7 +33,12 @@ User can track progress
 Can’t run offline
 Real Time Workflow (NOT BACKGROUND) has TRANSACTION
 
-PROCESS WF :
+
+
+
+
+
+PROCESS WF :  POSTOPERATION
 
 Workflows are always post operation.
 
