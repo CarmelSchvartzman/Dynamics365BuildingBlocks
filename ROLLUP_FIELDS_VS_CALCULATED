@@ -1,4 +1,4 @@
-Roll Up Field:
+Roll Up Field:  CHILDREN
 
 The rollups are calculated by scheduled system jobs that run asynchronously in the background.
 A rollup field contains an aggregate value computed over the records related to a specified record
@@ -6,7 +6,7 @@ The roll up fields comprise of Aggregation that use the fields from the current 
 Wide selection of aggregate functions. You can aggregate data by using the following functions: SUM, COUNT, MIN, MAXand AVG
 
 
-Calculated Field:
+Calculated Field:  PARENTS
 
 Data is calculated as soon as form is loaded
 calculated fields let you automate manual calculations used in your business processes.
