@@ -16,3 +16,28 @@ SUBTRACTYEARS, DIFFINDAYS, DIFFINHOURS, DIFFINMINUTES, DIFFINMONTHS, DIFFINWEEKS
 The available data types for the calculated field:
 Single line of text,Option Set,Two Options,Whole Number,Decimal Number,Currency,Date and Time
 
+
+//////////////////////////   https://docs.microsoft.com/en-gb/dynamics365/customerengagement/on-premises/customize/define-rollup-fields#rollup-field-business-scenarios
+Rollup field considerations
+You should be aware of certain conditions and restrictions when working with rollup fields:
+
+You can define a maximum of 100 rollup fields for the organization and up to 10 rollup fields per entity.
+
+A workflow can’t be triggered by the rollup field updates.
+
+A workflow wait condition cannot use a rollup field.
+
+A rollup over the rollup field is not supported.
+
+A rollup can't reference a calculated field that uses another calculated field, even if all the fields of the other calculated field are on the current entity.
+
+The rollup can only apply filters to the source entity or related entities, simple fields or non-complex calculated fields.
+
+A rollup can be done only over related entities with the 1:N relationship. A rollup can’t be done over the N:N relationships.
+
+A rollup can’t be done over the 1:N relationship for the Activity entity or the Activity Party entity.
+
+The business rules, workflows or calculated fields always use the last calculated value of the rollup field.
+
+A rollup field is aggregated under the system user context. All users are able to see the same rollup field value. You can control the rollup field visibility with the field level security (FLS), by restricting who can access the rollup field. More information: Field level security.
+
