@@ -19,7 +19,10 @@ Single line of text,Option Set,Two Options,Whole Number,Decimal Number,Currency,
 
 //////////////////////////   https://docs.microsoft.com/en-gb/dynamics365/customerengagement/on-premises/customize/define-rollup-fields#rollup-field-business-scenarios
 Rollup field considerations
-You should be aware of certain conditions and restrictions when working with rollup fields:
+
+The maximum number of records during the rollup refresh is limited to 50,000 records.
+
+The maximum hierarchy depth is limited to 10 for the source record. 
 
 You can define a maximum of 100 rollup fields for the organization and up to 10 rollup fields per entity.
 
