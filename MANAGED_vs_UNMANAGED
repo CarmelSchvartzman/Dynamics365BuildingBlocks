@@ -4,7 +4,8 @@
 SOLUTION:
 export and transfer items from one CRM to another instance
 
-MANAGED:
+MANAGED:    1.control how our controls can be changed by users 2.can update our solution WITHOUT deleting users customizations 3.users can DELETE all the solution
+
 if you uninstall the managed solution, all fields and forms and web resources (= all customizations) 
 you added to the system with this solution will be also deleted. ALSO the data will be deleted!!
 The advantage of a managed solution is, that no user can remove components or change the solution.
