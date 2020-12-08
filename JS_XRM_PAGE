@@ -33,7 +33,9 @@ Xrm.Page.data.entity.getIsDirty()     //  whether any fields in the form have be
 Xrm.Page.data.entity.isValid    //   whether all of the entity data is valid
 Xrm.Page.data.entity.save()    //  synchronously with the options to close the form or open a new form after the save is completed : formContext.data.entity.save("saveandnew")   "saveandclose"
 
-
+///  HIDDEN FIELD:
+Xrm.Page.getAttribute("new_marketinglist_provider").setValue(selectedMarketingListValue);
+Xrm.Page.getAttribute("new_marketinglist_provider").setSubmitMode("always");
 
  
 3) UI:
