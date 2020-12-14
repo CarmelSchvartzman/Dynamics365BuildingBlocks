@@ -1,0 +1,11 @@
+///  Relationship Behavior - Type of Behavior:    https://docs.microsoft.com/en-us/dynamics365/customerengagement/on-premises/customize/create-and-edit-1n-relationships
+
+Parental.    any action taken on a  parent entity is also taken on any child entity
+
+Referential.   can navigate to any related records, but actions taken on one will not affect the other.
+
+Referential, Restrict Delete.  can navigate to any related records, but the parent record cannot be deleted while the child record exists.
+
+Configurable Cascading.   - A custom entity cannot be the primary entity in a relationship with a related system entity that cascades.
+                          - yOU CANNOT set to Cascade if the related entity in that relationship already exists as a related entity in ANOTHER cascade relationship 
+
