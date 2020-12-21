@@ -5,6 +5,7 @@ Xrm.Page.getControl("").setVisible(true);
 Xrm.Page.data.entity.save();
 Xrm.Utility.alertDialog("");
 
+Xrm.Page.ui.refreshRibbon();
 
  Xrm.Page.getControl("subjects_of_lead_grid").getGrid();
 document.getElementById("crmGrid").control.refresh(); //  REFRESH GRID
