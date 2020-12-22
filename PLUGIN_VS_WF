@@ -6,6 +6,7 @@ PLUGIN :    PRE - POSTOPERATION
 
 IF:     
 manipulate data before is saved 
+     OR change METADATA and SCHEMA
      OR make validations before submitting the operation 
      OR cancel an operation based on your validations 
      OR immediate response to the user is needed 
