@@ -16,6 +16,8 @@ PRE-EVENT asynchronous plug-ins are not supported !!!! Can only run for 2 minute
 Only run as result of event TRIGGER
 Can run offline
 Can render CHILDREN
+CAN delete record & ENTITY
+CANNOT be DEACTIVATED
 you need to manipulate data before is saved.
 you need to make validations before submitting the operation.
 you want to be able to cancel an operation based on your validations.
@@ -37,7 +39,8 @@ Can run on demand
 User can track progress
 Can’t run offline
 Real Time Workflow (NOT BACKGROUND) has TRANSACTION
-
+CANNOT delete record & ENTITY
+CAN be DEACTIVATED (unpublish)
 
 
 
