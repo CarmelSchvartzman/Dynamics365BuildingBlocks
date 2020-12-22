@@ -5,6 +5,13 @@ Xrm.Page.getControl("").setVisible(true);
 Xrm.Page.data.entity.save();
 Xrm.Utility.alertDialog("");
 
+ this.formOnSave = function () {
+        // Display an alert dialog
+        Xrm.Navigation.openAlertDialog({ text: "Record saved." });
+    }
+    
+    
+
 Xrm.Page.ui.refreshRibbon();
 
  Xrm.Page.getControl("subjects_of_lead_grid").getGrid();
