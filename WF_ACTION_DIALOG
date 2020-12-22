@@ -13,3 +13,22 @@ Link Child Dialog		            	X
 Change Status	    X     	X     	X
 Stop Workflow	    X     	X     	
 Stop Dialog			                  X
+
+
+WF
+a workflow requires always a record as starting point (created, updated, deleted or on-demand)
+
+ACTION  -  business logic !! 
+an action DOES NOT  require a record
+In addition to the steps that can be used for real-time workflows, actions also have the Assign Value step. In actions, 
+these can be used only to set output arguments. You can use the form assistant to set output arguments to specific values or, more likely,
+to values from the record that the action is running against, 
+records related to that record with a many-to-one relationship, records created in an earlier step, or values that are part of the process itself.
+
+EXAMPLE
+if you had the requirement of when an account or contact gets reassigned we need to send an email to the newly assigned person and then create a task to follow up for 
+this person in 5 days. In this case this would be two seperate processes; one for the account entity and one for the contact entity. 
+Instead of having the same logic duplicated in both of these workflows; i'd rather build a simple action that does this sending of email + creation of task.
+I'd then take the new action and execute it from each workflows. 
+
+
