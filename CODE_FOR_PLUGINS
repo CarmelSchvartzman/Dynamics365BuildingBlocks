@@ -1,0 +1,19 @@
+entity.string = paymentYear.ToString();
+                entity.money = new Money(new decimal(int.Parse(paymentAmount)));
+                entity.lookup = new EntityReference(device.EntityLogicalName, device.Id);
+                entity.lookup = new EntityReference("contact", new Guid(license.supervisor.Id.ToString()));
+                entity.picklist = new OptionSetValue(CrmDeclarations.LicenseDevicePaymentStatus.NotPaid);            
+
+                email.Attributes.Add("regardingobjectid", new EntityReference(contact.EntityLogicalName, step.el_license.Id));
+                Guid streetID = entity.Contains("street") && entity["street"] != null ? entity.GetAttributeValue<EntityReference>("street").Id : Guid.Empty;
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
