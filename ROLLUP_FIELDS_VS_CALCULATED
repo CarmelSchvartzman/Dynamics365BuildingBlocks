@@ -26,7 +26,8 @@ The maximum hierarchy depth is limited to 10 for the source record.
 
 You can define a maximum of 100 rollup fields for the organization and up to 10 rollup fields per entity.
 
-A workflow can’t be triggered by the rollup field updates.
+A workflow/plugin/javascript can’t be triggered by the rollup field updates.
+Note: Calculated fields cannot be include in the rollup calculation.
 
 A workflow wait condition cannot use a rollup field.
 
