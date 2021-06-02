@@ -1,0 +1,12 @@
+Impersonation Code
+Easy way to impersonate System User is to pass null to the CreateOrganizationService and it will run as System user, find out more in this CRM SDK article
+
+// Use the factory to generate the Organization Service.
+OrganizationServiceImpersonated = factory.CreateOrganizationService(null);
+
+You can pass in a different user Id to the CreateOrganizationService to create an IOrganizationService
+
+IOrganizationServiceFactory factory = (IOrganizationServiceFactory)serviceProvider.GetService(typeof IOrganizationServiceFactory));
+IOrganizationService service = factory.CreateOrganizationService(context.InitiatingUserId);
+
+The sample code in the CRM SDK article impersonates using OrganizationServiceContext.  I personally have used this
